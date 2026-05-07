@@ -1,4 +1,4 @@
-﻿const MAX_MONEY_VALUE = 10000000;
+const MAX_MONEY_VALUE = 10000000;
   const moneyFieldIds = ['hero-initial', 'hero-monthly', 'sim-initial', 'sim-monthly'];
   const heroMoneyFieldIds = ['hero-initial', 'hero-monthly'];
   const simMoneyFieldIds = ['sim-initial', 'sim-monthly'];
@@ -285,7 +285,7 @@
 
     const firstName = getFirstName();
     document.getElementById('dashboard-greeting').textContent =
-      `Perfeito, ${firstName}, temos uma simulaÃ§Ã£o para vocÃª!`;
+      `Perfeito, ${firstName}, temos uma simulação para você!`;
     showSimulatorStep('results');
     setRiskProfile(currentRiskProfile);
     window.scrollTo(0, 0);
@@ -398,7 +398,7 @@
     const xTicks = expectedSeries.filter((_, index) => index > 0 && (index % xStep === 0 || index === maxIndex));
 
     return `
-      <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="GrÃ¡fico da simulaÃ§Ã£o de patrimÃ´nio">
+      <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Gráfico da simulação de patrimônio">
         ${yTicks.map((tick) => `
           <line x1="${margin.left}" y1="${y(tick)}" x2="${width - margin.right}" y2="${y(tick)}" stroke="#d0d5dd" stroke-width="1" opacity=".28" />
         `).join('')}

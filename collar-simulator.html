@@ -1,16 +1,16 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Simulador de Investimentos â€“ BTG Pactual</title>
+  <title>Simulador de Investimentos – BTG Pactual</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     PAGE 1 â€“ LANDING
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ════════════════════════════════════════
+     PAGE 1 – LANDING
+════════════════════════════════════════ -->
 <div id="page-landing">
 
   <!-- NAVBAR -->
@@ -23,8 +23,8 @@
   <!-- HERO -->
   <section class="hero">
     <div class="hero-left">
-      <h1>Descubra em quanto tempo vocÃª pode chegar a R$ 1 milhÃ£o investindo com estratÃ©gia</h1>
-      <p>Use nossa simulaÃ§Ã£o para entender, com base no seu aporte inicial e nos seus investimentos mensais, em quanto tempo vocÃª poderia atingir R$ 1 milhÃ£o investido.</p>
+      <h1>Descubra em quanto tempo você pode chegar a R$ 1 milhão investindo com estratégia</h1>
+      <p>Use nossa simulação para entender, com base no seu aporte inicial e nos seus investimentos mensais, em quanto tempo você poderia atingir R$ 1 milhão investido.</p>
       <div class="hero-socials" aria-label="Redes sociais">
         <a href="#" class="social-btn" aria-label="Facebook">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -62,7 +62,7 @@
       </div>
 
       <div class="form-group">
-        <label>Valor das aplicaÃ§Ãµes mensais</label>
+        <label>Valor das aplicações mensais</label>
         <div class="input-prefix">
           <span>R$</span>
           <input type="text" id="hero-monthly" placeholder="R$ 100,00" inputmode="numeric" pattern="[0-9]*" required aria-describedby="hero-form-error" />
@@ -70,7 +70,7 @@
       </div>
 
       <div class="profile-question">
-        <label>VocÃª se considera um investidor:</label>
+        <label>Você se considera um investidor:</label>
         <div class="profile-options" aria-label="Perfil de investidor">
           <button class="profile-option active" type="button" data-profile="conservador" onclick="setInvestorProfile('conservador')">Conservador</button>
           <button class="profile-option" type="button" data-profile="moderado" onclick="setInvestorProfile('moderado')">Moderado</button>
@@ -81,7 +81,7 @@
       <p class="form-error" id="hero-form-error">O valor inserido deve ser superior a zero</p>
 
       <div class="sim-card-footer">
-        <button class="btn-simulate" id="hero-submit" onclick="goToSimulator()" disabled>Iniciar simulaÃ§Ã£o</button>
+        <button class="btn-simulate" id="hero-submit" onclick="goToSimulator()" disabled>Iniciar simulação</button>
       </div>
     </div>
   </section>
@@ -95,8 +95,8 @@
 
     <div class="why-text">
       <h2>Por que usar o Simulador de Investimentos?</h2>
-      <p>Com o Simulador de Investimentos, vocÃª pode acessar uma carteira de investimentos com recomendaÃ§Ãµes totalmente personalizadas de acordo com o seu perfil de investidor, a sua tolerÃ¢ncia ao risco e os seus objetivos. Assim, Ã© possÃ­vel tomar decisÃµes de investimento mais inteligentes e adequadas.</p>
-      <button class="btn-simulate" id="why-submit" onclick="goToSimulator()" disabled>Iniciar simulaÃ§Ã£o</button>
+      <p>Com o Simulador de Investimentos, você pode acessar uma carteira de investimentos com recomendações totalmente personalizadas de acordo com o seu perfil de investidor, a sua tolerância ao risco e os seus objetivos. Assim, é possível tomar decisões de investimento mais inteligentes e adequadas.</p>
+      <button class="btn-simulate" id="why-submit" onclick="goToSimulator()" disabled>Iniciar simulação</button>
     </div>
   </section>
 
@@ -113,8 +113,8 @@
         <div class="footer-block">
           <h2 class="footer-title">Localidades</h2>
           <ul class="footer-list">
-            <li>SÃ£o Paulo</li>
-            <li>BrasÃ­lia</li>
+            <li>São Paulo</li>
+            <li>Brasília</li>
             <li>Recife</li>
           </ul>
         </div>
@@ -143,7 +143,7 @@
         </div>
 
         <div class="footer-bottom">
-          <p>Rua FidÃªncio Ramos, 100 - Vila OlÃ­mpia - SÃ£o Paulo</p>
+          <p>Rua Fidêncio Ramos, 100 - Vila Olímpia - São Paulo</p>
           <p>2026 Collar Capital - CNPJ 46.689.250/0001-81</p>
         </div>
       </div>
@@ -153,9 +153,9 @@
 </div><!-- /page-landing -->
 
 
-<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-     PAGE 2 â€“ SIMULATOR STEP 1 OF 3
-â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- ════════════════════════════════════════
+     PAGE 2 – SIMULATOR STEP 1 OF 3
+════════════════════════════════════════ -->
 <div id="page-simulator">
 
   <!-- NAVBAR -->
@@ -190,7 +190,7 @@
         </div>
 
         <div class="form-card">
-          <h3>Qual valor vocÃª gostaria de investir?</h3>
+          <h3>Qual valor você gostaria de investir?</h3>
 
           <div class="two-col">
             <div class="form-group-sim">
@@ -201,7 +201,7 @@
               </div>
             </div>
             <div class="form-group-sim">
-              <label>Valor das aplicaÃ§Ãµes mensais</label>
+              <label>Valor das aplicações mensais</label>
               <div class="input-prefix-sim">
                 <span>R$</span>
                 <input type="text" id="sim-monthly" placeholder="R$ 100,00" inputmode="numeric" pattern="[0-9]*" required />
@@ -210,7 +210,7 @@
           </div>
 
           <div class="profile-question">
-            <label>VocÃª se considera um investidor:</label>
+            <label>Você se considera um investidor:</label>
             <div class="profile-options" aria-label="Perfil de investidor">
               <button class="profile-option active" type="button" data-profile="conservador" onclick="setInvestorProfile('conservador')">Conservador</button>
               <button class="profile-option" type="button" data-profile="moderado" onclick="setInvestorProfile('moderado')">Moderado</button>
@@ -223,7 +223,7 @@
 
         <div class="footer-row">
           <button class="btn-back" onclick="goToLanding()">Voltar</button>
-          <button class="btn-next" id="sim-step1-next" onclick="goToStep2()" disabled>AvanÃ§ar</button>
+          <button class="btn-next" id="sim-step1-next" onclick="goToStep2()" disabled>Avançar</button>
         </div>
 
       </div><!-- /form-area -->
@@ -249,34 +249,34 @@
 
         <div class="form-card">
           <div class="question-group">
-            <label for="investment-objective">Qual Ã© o seu principal objetivo com este investimento?</label>
+            <label for="investment-objective">Qual é o seu principal objetivo com este investimento?</label>
             <select class="select-field" id="investment-objective" required>
-              <option value="">Selecione uma opÃ§Ã£o</option>
-              <option value="aumentar-patrimonio">Aumentar PatrimÃ´nio</option>
-              <option value="seguranca-financeira">SeguranÃ§a Financeira</option>
+              <option value="">Selecione uma opção</option>
+              <option value="aumentar-patrimonio">Aumentar Patrimônio</option>
+              <option value="seguranca-financeira">Segurança Financeira</option>
               <option value="aposentadoria">Aposentadoria</option>
               <option value="outros">Outros</option>
             </select>
           </div>
 
           <div class="question-group">
-            <label for="investment-relation">Qual sua relaÃ§Ã£o com investimentos?</label>
+            <label for="investment-relation">Qual sua relação com investimentos?</label>
             <select class="select-field" id="investment-relation" required>
-              <option value="">Selecione uma opÃ§Ã£o</option>
+              <option value="">Selecione uma opção</option>
               <option value="iniciante-com-nocao">Nunca investi, mas entendo um pouco do assunto</option>
-              <option value="iniciante">Nunca investi e estou comeÃ§ando agora</option>
-              <option value="conservador">JÃ¡ invisto de forma conservadora</option>
-              <option value="frequente">Invisto com frequÃªncia e acompanho o mercado</option>
-              <option value="experiente">Tenho experiÃªncia com produtos sofisticados</option>
+              <option value="iniciante">Nunca investi e estou começando agora</option>
+              <option value="conservador">Já invisto de forma conservadora</option>
+              <option value="frequente">Invisto com frequência e acompanho o mercado</option>
+              <option value="experiente">Tenho experiência com produtos sofisticados</option>
             </select>
           </div>
 
-          <p class="form-error" id="sim-step2-error">Preencha todos os campos para avanÃ§ar</p>
+          <p class="form-error" id="sim-step2-error">Preencha todos os campos para avançar</p>
         </div>
 
         <div class="footer-row">
           <button class="btn-back" onclick="goToStep1()">Voltar</button>
-          <button class="btn-next" id="sim-step2-next" onclick="goToStep3()" disabled>AvanÃ§ar</button>
+          <button class="btn-next" id="sim-step2-next" onclick="goToStep3()" disabled>Avançar</button>
         </div>
 
       </div><!-- /form-area -->
@@ -317,20 +317,20 @@
           </div>
 
           <div class="question-group">
-            <label for="simulation-goal">O que vocÃª busca com essa simulaÃ§Ã£o?</label>
+            <label for="simulation-goal">O que você busca com essa simulação?</label>
             <select class="select-field" id="simulation-goal" required>
-              <option value="">Selecione uma opÃ§Ã£o</option>
+              <option value="">Selecione uma opção</option>
               <option value="conhecimentos">Ampliar meus conhecimentos</option>
               <option value="produtos-recomendados">Investir em produtos recomendados</option>
             </select>
           </div>
 
-          <p class="form-error" id="sim-step3-error">Preencha todos os campos corretamente para ver a simulaÃ§Ã£o</p>
+          <p class="form-error" id="sim-step3-error">Preencha todos os campos corretamente para ver a simulação</p>
         </div>
 
         <div class="footer-row">
           <button class="btn-back" onclick="backToStep2()">Voltar</button>
-          <button class="btn-next" id="sim-step3-next" onclick="showResults()" disabled>Ver simulaÃ§Ã£o</button>
+          <button class="btn-next" id="sim-step3-next" onclick="showResults()" disabled>Ver simulação</button>
         </div>
 
       </div><!-- /form-area -->
@@ -339,7 +339,7 @@
 
   <div class="sim-body sim-step" id="sim-step-results">
     <div class="sim-form-area">
-      <h2 class="dashboard-greeting" id="dashboard-greeting">Perfeito, temos uma simulaÃ§Ã£o para vocÃª!</h2>
+      <h2 class="dashboard-greeting" id="dashboard-greeting">Perfeito, temos uma simulação para você!</h2>
 
       <div class="risk-tabs" aria-label="Perfil de investimento">
         <button class="risk-tab active" type="button" data-profile="conservador" onclick="setRiskProfile('conservador')">Conservador</button>
@@ -351,16 +351,16 @@
         <div class="chart-card">
           <div class="chart-wrap" id="chart-wrap"></div>
           <div class="chart-legend">
-            <span class="legend-item" style="color:#c0392b;"><span class="legend-line dashed"></span>CenÃ¡rio pessimista</span>
-            <span class="legend-item" style="color:#155dcc;"><span class="legend-line"></span>CenÃ¡rio esperado</span>
-            <span class="legend-item" style="color:#1f9d55;"><span class="legend-line dashed"></span>CenÃ¡rio otimista</span>
+            <span class="legend-item" style="color:#c0392b;"><span class="legend-line dashed"></span>Cenário pessimista</span>
+            <span class="legend-item" style="color:#155dcc;"><span class="legend-line"></span>Cenário esperado</span>
+            <span class="legend-item" style="color:#1f9d55;"><span class="legend-line dashed"></span>Cenário otimista</span>
           </div>
         </div>
 
         <aside class="summary-card">
           <div class="summary-list">
             <div class="summary-item">
-              <span>Tempo estimado para R$1 MilhÃ£o:</span>
+              <span>Tempo estimado para R$1 Milhão:</span>
               <strong id="summary-million">-</strong>
             </div>
             <div class="summary-item">
@@ -372,17 +372,17 @@
               <strong id="summary-monthly">-</strong>
             </div>
             <div class="summary-item">
-              <span>CenÃ¡rio pessimista:</span>
+              <span>Cenário pessimista:</span>
               <strong id="summary-pessimistic">-</strong>
               <small class="summary-rate" id="summary-pessimistic-rate">-</small>
             </div>
             <div class="summary-item">
-              <span>CenÃ¡rio Esperado:</span>
+              <span>Cenário Esperado:</span>
               <strong id="summary-expected">-</strong>
               <small class="summary-rate" id="summary-expected-rate">-</small>
             </div>
             <div class="summary-item">
-              <span>CenÃ¡rio Otimista:</span>
+              <span>Cenário Otimista:</span>
               <strong id="summary-optimistic">-</strong>
               <small class="summary-rate" id="summary-optimistic-rate">-</small>
             </div>
@@ -391,7 +391,7 @@
       </div>
 
       <div class="dashboard-cta">
-        <span>Quer entender qual estratÃ©gia foi utilizada?</span>
+        <span>Quer entender qual estratégia foi utilizada?</span>
         <button class="btn-next" type="button">Eu quero investir!</button>
       </div>
     </div>
@@ -409,8 +409,8 @@
           <div class="footer-block">
             <h2 class="footer-title">Localidades</h2>
             <ul class="footer-list">
-              <li>SÃ£o Paulo</li>
-              <li>BrasÃ­lia</li>
+              <li>São Paulo</li>
+              <li>Brasília</li>
               <li>Recife</li>
             </ul>
           </div>
@@ -439,7 +439,7 @@
           </div>
 
           <div class="footer-bottom">
-            <p>Rua FidÃªncio Ramos, 100 - Vila OlÃ­mpia - SÃ£o Paulo</p>
+            <p>Rua Fidêncio Ramos, 100 - Vila Olímpia - São Paulo</p>
             <p>2026 Collar Capital - CNPJ 46.689.250/0001-81</p>
           </div>
         </div>
