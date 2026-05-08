@@ -420,40 +420,6 @@
             </article>
           </div>
 
-          <div class="strategy-gate" id="strategy-gate" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="strategy-gate-title">
-            <div class="form-card strategy-access-form">
-              <h3 id="strategy-gate-title">Veja a estratégia completa</h3>
-              <div class="three-col">
-                <div class="question-group">
-                  <label for="strategy-full-name">Nome completo</label>
-                  <input class="text-field" type="text" id="strategy-full-name" autocomplete="name" required />
-                </div>
-                <div class="question-group">
-                  <label for="strategy-email">E-mail</label>
-                  <input class="text-field" type="email" id="strategy-email" autocomplete="email" required />
-                </div>
-                <div class="question-group">
-                  <label for="strategy-phone">Celular</label>
-                  <input class="text-field" type="number" id="strategy-phone" placeholder="Coloque o DDD + número" required />
-                </div>
-              </div>
-
-              <div class="question-group">
-                <label for="strategy-simulation-goal">O que você busca com essa simulação?</label>
-                <select class="select-field" id="strategy-simulation-goal" required>
-                  <option value="">Selecione uma opção</option>
-                  <option value="conhecimentos">Ampliar meus conhecimentos</option>
-                  <option value="produtos-recomendados">Investir em produtos recomendados</option>
-                </select>
-              </div>
-
-              <p class="form-error" id="strategy-form-error">Preencha todos os campos corretamente para ver a estratégia</p>
-
-              <div class="footer-row">
-                <button class="btn-next" id="strategy-submit" type="button" onclick="unlockStrategyAssets()" disabled>Ver estratégia</button>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </div>
@@ -510,6 +476,41 @@
   </div><!-- /sim-body -->
 
 </div><!-- /page-simulator -->
+
+<div class="strategy-gate" id="strategy-gate" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="strategy-gate-title">
+  <div class="form-card strategy-access-form">
+    <h3 id="strategy-gate-title">Veja a estratégia completa</h3>
+    <div class="three-col">
+      <div class="question-group">
+        <label for="strategy-full-name">Nome completo</label>
+        <input class="text-field" type="text" id="strategy-full-name" autocomplete="name" required />
+      </div>
+      <div class="question-group">
+        <label for="strategy-email">E-mail</label>
+        <input class="text-field" type="email" id="strategy-email" autocomplete="email" required />
+      </div>
+      <div class="question-group">
+        <label for="strategy-phone">Celular</label>
+        <input class="text-field" type="number" id="strategy-phone" placeholder="Coloque o DDD + número" required />
+      </div>
+    </div>
+
+    <div class="question-group">
+      <label for="strategy-simulation-goal">O que você busca com essa simulação?</label>
+      <select class="select-field" id="strategy-simulation-goal" required>
+        <option value="">Selecione uma opção</option>
+        <option value="conhecimentos">Ampliar meus conhecimentos</option>
+        <option value="produtos-recomendados">Investir em produtos recomendados</option>
+      </select>
+    </div>
+
+    <p class="form-error" id="strategy-form-error">Preencha todos os campos corretamente para ver a estratégia</p>
+
+    <div class="footer-row">
+      <button class="btn-next" id="strategy-submit" type="button" onclick="unlockStrategyAssets()" disabled>Ver estratégia</button>
+    </div>
+  </div>
+</div>
 
 <div class="lead-modal-overlay" id="lead-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lead-modal-title">
   <div class="lead-modal-card">

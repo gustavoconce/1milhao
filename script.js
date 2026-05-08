@@ -13,7 +13,6 @@ const MAX_MONEY_VALUE = 10000000;
     sofisticado: { label: 'Sofisticado', cdiMultiplier: 1.15 }
   };
   let currentRiskProfile = 'conservador';
-  let strategyTouchStartY = null;
 
   function goToSimulator() {
     formatarNumeroBR(document.getElementById('hero-initial'));
@@ -334,11 +333,8 @@ const MAX_MONEY_VALUE = 10000000;
     return document.getElementById('strategy-gate').classList.contains('active');
   }
 
-  function getStrategyScrollLimit() {
-    const cards = document.querySelector('.strategy-cards');
-    const currentScroll = getStrategyScrollPosition();
-    const scrollBeforeCards = cards.getBoundingClientRect().top + currentScroll - window.innerHeight - 24;
-    return Math.max(0, Math.min(STRATEGY_SCROLL_TRIGGER, scrollBeforeCards));
+  function getStrategyScrollTrigger() {
+    return STRATEGY_SCROLL_TRIGGER;
   }
 
   function getStrategyScrollPosition() {
@@ -361,64 +357,16 @@ const MAX_MONEY_VALUE = 10000000;
     document.body.classList.remove('strategy-form-open');
   }
 
-  function shouldBlockStrategyScroll(nextScrollTop) {
+  function shouldTriggerStrategyForm(nextScrollTop) {
     return isResultsStepActive()
       && isStrategyLocked()
       && !isStrategyFormOpen()
-      && nextScrollTop > getStrategyScrollLimit();
-  }
-
-  function blockStrategyScroll() {
-    const resultsBody = document.getElementById('sim-step-results');
-    const scrollLimit = getStrategyScrollLimit();
-    resultsBody.scrollTop = scrollLimit;
-    window.scrollTo(0, scrollLimit);
-    showStrategyFormModal();
-  }
-
-  function handleResultsWheel(event) {
-    if (event.deltaY <= 0) return;
-
-    if (shouldBlockStrategyScroll(getStrategyScrollPosition() + event.deltaY)) {
-      event.preventDefault();
-      blockStrategyScroll();
-    }
+      && nextScrollTop > getStrategyScrollTrigger();
   }
 
   function handleResultsScroll() {
-    if (shouldBlockStrategyScroll(getStrategyScrollPosition())) {
-      blockStrategyScroll();
-    }
-  }
-
-  function handleResultsTouchStart(event) {
-    strategyTouchStartY = event.touches[0].clientY;
-  }
-
-  function handleResultsTouchMove(event) {
-    if (strategyTouchStartY === null) return;
-
-    const deltaY = strategyTouchStartY - event.touches[0].clientY;
-    if (deltaY <= 0) return;
-
-    if (shouldBlockStrategyScroll(getStrategyScrollPosition() + deltaY)) {
-      event.preventDefault();
-      blockStrategyScroll();
-    }
-  }
-
-  function handleStrategyKeyboardScroll(event) {
-    const scrollingKeys = ['ArrowDown', 'PageDown', 'End', ' '];
-    if (!scrollingKeys.includes(event.key)) return;
-    if (event.target.closest('input, select, textarea, button')) return;
-
-    const nextScrollTop = event.key === 'End'
-      ? document.documentElement.scrollHeight
-      : getStrategyScrollPosition() + Math.round(window.innerHeight * .85);
-
-    if (shouldBlockStrategyScroll(nextScrollTop)) {
-      event.preventDefault();
-      blockStrategyScroll();
+    if (shouldTriggerStrategyForm(getStrategyScrollPosition())) {
+      showStrategyFormModal();
     }
   }
 
@@ -693,12 +641,8 @@ const MAX_MONEY_VALUE = 10000000;
   });
 
   const resultsBody = document.getElementById('sim-step-results');
-  resultsBody.addEventListener('wheel', handleResultsWheel, { passive: false });
   resultsBody.addEventListener('scroll', handleResultsScroll);
-  resultsBody.addEventListener('touchstart', handleResultsTouchStart, { passive: true });
-  resultsBody.addEventListener('touchmove', handleResultsTouchMove, { passive: false });
   window.addEventListener('scroll', handleResultsScroll);
-  document.addEventListener('keydown', handleStrategyKeyboardScroll);
 
   ['phone', 'strategy-phone'].forEach((id) => {
     document.getElementById(id).addEventListener('keydown', (event) => {

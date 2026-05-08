@@ -946,7 +946,9 @@
       width: calc(100% + 96px);
     }
     body.lead-modal-open #page-landing,
-    body.lead-modal-open #page-simulator {
+    body.lead-modal-open #page-simulator,
+    body.strategy-form-open #page-landing,
+    body.strategy-form-open #page-simulator {
       filter: blur(5px);
       pointer-events: none;
       user-select: none;
