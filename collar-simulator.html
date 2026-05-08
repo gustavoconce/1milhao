@@ -60,7 +60,7 @@
         <label>Valor das aplicações mensais</label>
         <div class="input-prefix">
           <span>R$</span>
-          <input type="text" id="hero-monthly" placeholder="R$ 100,00" inputmode="numeric" pattern="[0-9]*" required aria-describedby="hero-form-error" />
+          <input type="text" id="hero-monthly" placeholder="100,00" inputmode="numeric" pattern="[0-9]*" required aria-describedby="hero-form-error" />
         </div>
       </div>
 
@@ -69,7 +69,7 @@
         <div class="profile-options" aria-label="Perfil de investidor">
           <button class="profile-option active" type="button" data-profile="conservador" onclick="setInvestorProfile('conservador')">Conservador</button>
           <button class="profile-option" type="button" data-profile="moderado" onclick="setInvestorProfile('moderado')">Moderado</button>
-          <button class="profile-option" type="button" data-profile="agressivo" onclick="setInvestorProfile('agressivo')">Agressivo</button>
+          <button class="profile-option" type="button" data-profile="sofisticado" onclick="setInvestorProfile('sofisticado')">Sofisticado</button>
         </div>
       </div>
 
@@ -208,7 +208,7 @@
             <div class="profile-options" aria-label="Perfil de investidor">
               <button class="profile-option active" type="button" data-profile="conservador" onclick="setInvestorProfile('conservador')">Conservador</button>
               <button class="profile-option" type="button" data-profile="moderado" onclick="setInvestorProfile('moderado')">Moderado</button>
-              <button class="profile-option" type="button" data-profile="agressivo" onclick="setInvestorProfile('agressivo')">Agressivo</button>
+              <button class="profile-option" type="button" data-profile="sofisticado" onclick="setInvestorProfile('sofisticado')">Sofisticado</button>
             </div>
           </div>
 
@@ -308,7 +308,7 @@
       <div class="risk-tabs" aria-label="Perfil de investimento">
         <button class="risk-tab active" type="button" data-profile="conservador" onclick="setRiskProfile('conservador')">Conservador</button>
         <button class="risk-tab" type="button" data-profile="moderado" onclick="setRiskProfile('moderado')">Moderado</button>
-        <button class="risk-tab" type="button" data-profile="agressivo" onclick="setRiskProfile('agressivo')">Agressivo</button>
+        <button class="risk-tab" type="button" data-profile="sofisticado" onclick="setRiskProfile('sofisticado')">Sofisticado</button>
       </div>
 
       <div class="dashboard-grid">
@@ -362,54 +362,67 @@
             <article class="strategy-card">
               <h3>Conservador</h3>
               <ul>
-                <li>Tesouro Selic</li>
-                <li>Tesouro IPCA+</li>
-                <li>CDB Liquidez Diária</li>
-                <li>LCI Pós-fixada</li>
-                <li>LCA Pós-fixada</li>
-                <li>Fundo DI</li>
-                <li>Letra Financeira</li>
-                <li>CRI Sênior</li>
-                <li>CRA Sênior</li>
-                <li>Debênture Incentivada</li>
+                <li>BTG CDB Plus FIRF Crédito Privado</li>
+                <li>BTG Yield DI FIRF Referenciado Crédito Privado</li>
+                <li>BTG Tesouro Selic FIRF Referenciado DI</li>
+                <li>BTG Tesouro Prefixado IRF-M 1+ FIRF Ref</li>
+                <li>BTG Debêntures Incentivadas IPCA Infra FIC FIRF</li>
+                <li>Sparta Debêntures Incentivadas Infra IPCA FIC FIRF</li>
+                <li>Absolute Hidra IPCA FIC FIInfra Crédito Privado</li>
+                <li>Kapitalo K10 FIC FIM Access</li>
+                <li>Armor Axe FIC FIM</li>
+                <li>BTG Synergy Long Bias FIA RL</li>
+                <li>Real Investor FIC FIA BDR Nível I</li>
+                <li>BTLG11 — BTG Pactual Logística FII</li>
               </ul>
             </article>
 
             <article class="strategy-card">
               <h3>Moderado</h3>
               <ul>
-                <li>Tesouro IPCA+</li>
-                <li>BOVA11</li>
-                <li>IVVB11</li>
-                <li>SMAL11</li>
-                <li>XFIX11</li>
-                <li>KNRI11</li>
-                <li>HGLG11</li>
-                <li>Fundo Multimercado</li>
-                <li>Debênture Incentivada</li>
-                <li>ETF Global</li>
+                <li>BTG CDB Plus FIRF Crédito Privado</li>
+                <li>BTG Yield DI FIRF Referenciado Crédito Privado</li>
+                <li>BTG Tesouro Prefixado IRF-M 1+ FIRF Ref</li>
+                <li>BTG Debêntures Incentivadas IPCA Infra FIC FIRF</li>
+                <li>Sparta Debêntures Incentivadas Infra IPCA FIC FIRF</li>
+                <li>Absolute Hidra IPCA FIC FIInfra Crédito Privado</li>
+                <li>Legacy Compound Debêntures Incentivadas Infra IPCA</li>
+                <li>Kapitalo K10 FIC FIM Access</li>
+                <li>Armor Axe FIC FIM</li>
+                <li>BTG Synergy Long Bias FIA RL</li>
+                <li>Real Investor FIC FIA BDR Nível I</li>
+                <li>Guepardo Institucional FIC FIA</li>
+                <li>Ibiúna Long Biased FIC FIM</li>
+                <li>BTLG11 — BTG Pactual Logística FII</li>
+                <li>BTG Reference Bitcoin 100 FIC FIM IE</li>
               </ul>
             </article>
 
             <article class="strategy-card">
-              <h3>Agressivo</h3>
+              <h3>Sofisticado</h3>
               <ul>
-                <li>PETR4</li>
-                <li>VALE3</li>
-                <li>ITUB4</li>
-                <li>WEGE3</li>
-                <li>PRIO3</li>
-                <li>RENT3</li>
-                <li>RADL3</li>
-                <li>NASD11</li>
-                <li>HASH11</li>
-                <li>BDRs Globais</li>
+                <li>BTG CDB Plus FIRF Crédito Privado</li>
+                <li>BTG Tesouro Prefixado IRF-M 1+ FIRF Ref</li>
+                <li>BTG Debêntures Incentivadas IPCA Infra FIC FIRF</li>
+                <li>Sparta Debêntures Incentivadas Infra IPCA FIC FIRF</li>
+                <li>Absolute Hidra IPCA FIC FIInfra Crédito Privado</li>
+                <li>Legacy Compound Debêntures Incentivadas Infra IPCA</li>
+                <li>Kapitalo K10 FIC FIM Access</li>
+                <li>Armor Axe FIC FIM</li>
+                <li>BTG Synergy Long Bias FIA RL</li>
+                <li>Real Investor FIC FIA BDR Nível I</li>
+                <li>Guepardo Institucional FIC FIA</li>
+                <li>Ibiúna Long Biased FIC FIM</li>
+                <li>SPX Patriot FIC FIA</li>
+                <li>BTLG11 — BTG Pactual Logística FII</li>
+                <li>BTG Reference Bitcoin 100 FIC FIM IE</li>
               </ul>
             </article>
           </div>
 
-          <div class="strategy-gate" id="strategy-gate">
+          <div class="strategy-gate" id="strategy-gate" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="strategy-gate-title">
             <div class="form-card strategy-access-form">
+              <h3 id="strategy-gate-title">Veja a estratégia completa</h3>
               <div class="three-col">
                 <div class="question-group">
                   <label for="strategy-full-name">Nome completo</label>
@@ -421,7 +434,7 @@
                 </div>
                 <div class="question-group">
                   <label for="strategy-phone">Celular</label>
-                  <input class="text-field" type="number" id="strategy-phone" placeholder="Coloque o DDD + Numero" required />
+                  <input class="text-field" type="number" id="strategy-phone" placeholder="Coloque o DDD + número" required />
                 </div>
               </div>
 
@@ -509,4 +522,3 @@
 
 </body>
 </html>
-
