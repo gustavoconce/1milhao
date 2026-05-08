@@ -4,6 +4,7 @@ const MAX_MONEY_VALUE = 10000000;
   const simMoneyFieldIds = ['sim-initial', 'sim-monthly'];
   const step2FieldIds = ['investment-objective', 'investment-relation'];
   const step3FieldIds = ['full-name', 'email', 'phone', 'simulation-goal'];
+  const strategyFieldIds = ['strategy-full-name', 'strategy-email', 'strategy-phone', 'strategy-simulation-goal'];
   const CDI_ANNUAL_RATE = 0.1483;
   const riskProfiles = {
     conservador: { label: 'Conservador', cdiMultiplier: 1.02 },
@@ -59,16 +60,17 @@ const MAX_MONEY_VALUE = 10000000;
     simMoneyFieldIds.forEach((id) => formatarNumeroBR(document.getElementById(id)));
 
     if (!updateSimStep1Validation(true)) {
-      const firstInvalidField = simMoneyFieldIds
+      const firstInvalidField = [...simMoneyFieldIds, ...step2FieldIds]
         .map((id) => document.getElementById(id))
-        .find((field) => !isMoneyFieldValid(field));
+        .find((field) => {
+          if (simMoneyFieldIds.includes(field.id)) return !isMoneyFieldValid(field);
+          return !isStep2FieldValid(field);
+        });
       firstInvalidField.focus();
       return;
     }
 
-    showSimulatorStep(2);
-    updateStep2Validation(false);
-    window.scrollTo(0, 0);
+    showResults();
   }
 
   function goToStep3() {
@@ -86,8 +88,8 @@ const MAX_MONEY_VALUE = 10000000;
   }
 
   function backToStep2() {
-    showSimulatorStep(2);
-    updateStep2Validation(false);
+    showSimulatorStep(1);
+    updateSimStep1Validation(false);
     window.scrollTo(0, 0);
   }
 
@@ -198,19 +200,28 @@ const MAX_MONEY_VALUE = 10000000;
   }
 
   function updateSimStep1Validation(showErrors = false) {
-    const fields = simMoneyFieldIds.map((id) => document.getElementById(id));
-    const isValid = fields.every(isMoneyFieldValid);
+    const moneyFields = simMoneyFieldIds.map((id) => document.getElementById(id));
+    const step2Fields = step2FieldIds.map((id) => document.getElementById(id));
+    const moneyValid = moneyFields.every(isMoneyFieldValid);
+    const step2Valid = step2Fields.every(isStep2FieldValid);
+    const isValid = moneyValid && step2Valid;
     const error = document.getElementById('sim-step1-error');
     const button = document.getElementById('sim-step1-next');
 
-    fields.forEach((field) => {
+    moneyFields.forEach((field) => {
       const invalid = showErrors && !isMoneyFieldValid(field);
       field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
       field.closest('.input-prefix-sim').classList.toggle('invalid', invalid);
     });
 
-    error.classList.toggle('visible', showErrors && !isValid);
-    button.disabled = !isValid;
+    step2Fields.forEach((field) => {
+      const invalid = showErrors && !isStep2FieldValid(field);
+      field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+      field.classList.toggle('invalid', invalid);
+    });
+
+    if (error) error.classList.toggle('visible', showErrors && !isValid);
+    if (button) button.disabled = !isValid;
 
     return isValid;
   }
@@ -227,8 +238,8 @@ const MAX_MONEY_VALUE = 10000000;
       field.classList.toggle('invalid', invalid);
     });
 
-    error.classList.toggle('visible', showErrors && !isValid);
-    button.disabled = !isValid;
+    if (error) error.classList.toggle('visible', showErrors && !isValid);
+    if (button) button.disabled = !isValid;
 
     return isValid;
   }
@@ -237,19 +248,23 @@ const MAX_MONEY_VALUE = 10000000;
     return field.value.trim() !== '';
   }
 
-  function isStep3FieldValid(field) {
+  function isContactFieldValid(field) {
     const value = field.value.trim();
 
-    if (field.id === 'email') {
+    if (field.type === 'email' || field.id.includes('email')) {
       return value !== '' && field.checkValidity();
     }
 
-    if (field.id === 'phone') {
+    if (field.id.includes('phone')) {
       const digits = value.replace(/\D/g, '');
       return digits.length >= 10 && digits.length <= 11;
     }
 
     return value !== '';
+  }
+
+  function isStep3FieldValid(field) {
+    return isContactFieldValid(field);
   }
 
   function updateStep3Validation(showErrors = false) {
@@ -274,8 +289,72 @@ const MAX_MONEY_VALUE = 10000000;
     return updateStep3Validation(showErrors);
   }
 
-  function showResults() {
-    if (!validateStep3(true)) {
+  function updateStrategyValidation(showErrors = false) {
+    const fields = strategyFieldIds.map((id) => document.getElementById(id));
+    const isValid = fields.every(isContactFieldValid);
+    const error = document.getElementById('strategy-form-error');
+    const button = document.getElementById('strategy-submit');
+
+    fields.forEach((field) => {
+      const invalid = showErrors && !isContactFieldValid(field);
+      field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
+      field.classList.toggle('invalid', invalid);
+    });
+
+    error.classList.toggle('visible', showErrors && !isValid);
+    button.disabled = !isValid;
+
+    return isValid;
+  }
+
+  function unlockStrategyAssets() {
+    if (!updateStrategyValidation(true)) {
+      const firstInvalidField = strategyFieldIds
+        .map((id) => document.getElementById(id))
+        .find((field) => !isContactFieldValid(field));
+      firstInvalidField.focus();
+      return;
+    }
+
+    showLeadModal();
+  }
+
+  function showLeadModal() {
+    const modal = document.getElementById('lead-modal');
+    document.body.classList.add('lead-modal-open');
+    modal.classList.add('active');
+    modal.setAttribute('aria-hidden', 'false');
+    modal.querySelector('button').focus();
+  }
+
+  function returnToLandingFromLeadModal() {
+    const modal = document.getElementById('lead-modal');
+    document.body.classList.remove('lead-modal-open');
+    modal.classList.remove('active');
+    modal.setAttribute('aria-hidden', 'true');
+
+    strategyFieldIds.forEach((id) => {
+      document.getElementById(id).value = '';
+    });
+    updateStrategyValidation(false);
+    goToLanding();
+  }
+
+  function showResults({ requireContact = false } = {}) {
+    simMoneyFieldIds.forEach((id) => formatarNumeroBR(document.getElementById(id)));
+
+    if (!updateSimStep1Validation(true)) {
+      const firstInvalidField = [...simMoneyFieldIds, ...step2FieldIds]
+        .map((id) => document.getElementById(id))
+        .find((field) => {
+          if (simMoneyFieldIds.includes(field.id)) return !isMoneyFieldValid(field);
+          return !isStep2FieldValid(field);
+        });
+      firstInvalidField.focus();
+      return;
+    }
+
+    if (requireContact && !validateStep3(true)) {
       const firstInvalidField = step3FieldIds
         .map((id) => document.getElementById(id))
         .find((field) => !isStep3FieldValid(field));
@@ -284,8 +363,9 @@ const MAX_MONEY_VALUE = 10000000;
     }
 
     const firstName = getFirstName();
-    document.getElementById('dashboard-greeting').textContent =
-      `Perfeito, ${firstName}, temos uma simulação para você!`;
+    document.getElementById('dashboard-greeting').textContent = firstName
+      ? `Perfeito, ${firstName}, temos uma simulação para você!`
+      : 'Perfeito, temos uma simulação para você!';
     showSimulatorStep('results');
     setRiskProfile(currentRiskProfile);
     window.scrollTo(0, 0);
@@ -293,7 +373,7 @@ const MAX_MONEY_VALUE = 10000000;
 
   function getFirstName() {
     const fullName = document.getElementById('full-name').value.trim();
-    return fullName.split(/\s+/)[0] || 'investidor';
+    return fullName.split(/\s+/)[0] || '';
   }
 
   function setInvestorProfile(profileKey) {
@@ -487,9 +567,9 @@ const MAX_MONEY_VALUE = 10000000;
 
   step2FieldIds.forEach((id) => {
     const field = document.getElementById(id);
-    field.addEventListener('input', () => updateStep2Validation(false));
-    field.addEventListener('change', () => updateStep2Validation(false));
-    field.addEventListener('blur', () => updateStep2Validation(true));
+    field.addEventListener('input', () => updateSimStep1Validation(false));
+    field.addEventListener('change', () => updateSimStep1Validation(false));
+    field.addEventListener('blur', () => updateSimStep1Validation(true));
   });
 
   step3FieldIds.forEach((id) => {
@@ -499,15 +579,23 @@ const MAX_MONEY_VALUE = 10000000;
     field.addEventListener('blur', () => updateStep3Validation(true));
   });
 
-  document.getElementById('phone').addEventListener('keydown', (event) => {
-    if (['e', 'E', '+', '-', '.', ','].includes(event.key)) {
-      event.preventDefault();
-    }
+  strategyFieldIds.forEach((id) => {
+    const field = document.getElementById(id);
+    field.addEventListener('input', () => updateStrategyValidation(false));
+    field.addEventListener('change', () => updateStrategyValidation(false));
+    field.addEventListener('blur', () => updateStrategyValidation(true));
+  });
+
+  ['phone', 'strategy-phone'].forEach((id) => {
+    document.getElementById(id).addEventListener('keydown', (event) => {
+      if (['e', 'E', '+', '-', '.', ','].includes(event.key)) {
+        event.preventDefault();
+      }
+    });
   });
 
   // Init slider backgrounds
   updateHeroValidation(false);
   updateSimStep1Validation(false);
-  updateStep2Validation(false);
   updateStep3Validation(false);
-
+  updateStrategyValidation(false);
